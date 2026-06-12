@@ -4,7 +4,7 @@ import {
   FindOptionsWhere,
   Repository as TypeOrmRepository,
 } from 'typeorm';
-import { BaseEntityI } from '@/domain/entity';
+import { BaseEntityI } from '@/domain/entities';
 import { ORDER_DIRECTION } from '@/application/pagination';
 
 export class TypeOrmAdapter<T extends BaseEntityI> implements Repository<T> {
@@ -65,9 +65,10 @@ export class TypeOrmAdapter<T extends BaseEntityI> implements Repository<T> {
     return result.affected !== undefined && result.affected > 0;
   }
 
-  async delete(id: string): Promise<void> {
-    await this.repository.delete({
+  async delete(id: string): Promise<boolean> {
+    const result = await this.repository.delete({
       id: id,
     } as FindOptionsWhere<T>);
+    return result.affected ? result.affected > 0 : false;
   }
 }

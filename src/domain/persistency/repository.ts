@@ -1,6 +1,6 @@
 import { ORDER_DIRECTION } from '@/application/pagination';
 import { QueryResult } from './result';
-import { BaseEntity } from '../entity';
+import { BaseEntity } from '../entities';
 
 export abstract class Repository<T extends BaseEntity> {
   abstract save(entity: T): Promise<T>;
@@ -11,5 +11,5 @@ export abstract class Repository<T extends BaseEntity> {
     where?: Partial<T>;
   }): Promise<QueryResult<T[]>>;
   abstract update(id: string, entity: Partial<T>): Promise<boolean>;
-  abstract delete(id: string): Promise<void>;
+  abstract delete(id: string): Promise<boolean>;
 }

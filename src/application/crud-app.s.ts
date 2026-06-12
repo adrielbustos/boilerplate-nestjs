@@ -1,12 +1,12 @@
 import { Repository } from '@/domain/persistency';
 import { APP_ERROR_TYPE, AppError } from '@/domain/apperror';
+import { BaseEntity } from '@/domain/entities';
 import Utils from '@/domain/utils/utils';
 
 import { CreateInput, UpdateInput } from './inputs';
 import { CreateOutput } from './outputs';
 import { Page, PaginationOptions } from './pagination';
 import { UpdateOutput } from './outputs/update.output';
-import { BaseEntity } from '@/domain/entity';
 
 export abstract class CRUDApplication<T extends BaseEntity> {
   public constructor(private readonly repository: Repository<T>) {}
@@ -71,7 +71,7 @@ export abstract class CRUDApplication<T extends BaseEntity> {
     return new UpdateOutput<T>(updatedEntity);
   }
 
-  public async delete(id: string): Promise<void> {
+  public async delete(id: string): Promise<boolean> {
     if (this.beforeDelete) {
       await this.beforeDelete(id);
     }
