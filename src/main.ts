@@ -1,8 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './infrastructure/http/nestjs/app.module';
+import { ConfigService } from '@nestjs/config';
+import { Environment } from './env';
 
 async function bootstrap() {
+  process.env.TZ = 'UTC';
+  const configService = new ConfigService();
+  new Environment(configService);
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+  console.log(Environment.PORT);
+  await app.listen(Environment.PORT ?? 3000);
 }
 bootstrap();
