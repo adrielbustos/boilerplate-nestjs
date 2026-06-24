@@ -1,6 +1,6 @@
 import { ORDER_DIRECTION } from '@/application/pagination';
 import { QueryResult } from './result';
-import { BaseEntity } from '../entities';
+import { BaseEntity } from '../common/entities';
 
 export abstract class Repository<T extends BaseEntity> {
   abstract save(entity: T): Promise<T>;

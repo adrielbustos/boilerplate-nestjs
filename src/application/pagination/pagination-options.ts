@@ -11,7 +11,7 @@ export class PaginationOptions<T> {
   constructor(options: {
     page: number;
     count: number;
-    order: {
+    order?: {
       by: keyof T | 'id';
       order: ORDER_DIRECTION;
     }[];

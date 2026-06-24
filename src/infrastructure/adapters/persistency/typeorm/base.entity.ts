@@ -1,4 +1,3 @@
-import { BaseEntity } from '@/domain/entities';
 import {
   Column,
   CreateDateColumn,
@@ -6,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { BaseEntity } from '@/domain/common/entities';
 
 export class TypeormBaseEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

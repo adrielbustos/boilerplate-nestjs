@@ -1,10 +1,10 @@
-import { QueryResult, Repository } from '@/domain/persistency';
 import {
   FindOptionsOrder,
   FindOptionsWhere,
   Repository as TypeOrmRepository,
 } from 'typeorm';
-import { BaseEntityI } from '@/domain/entities';
+import { QueryResult, Repository } from '@/domain/persistency';
+import { BaseEntityI } from '@/domain/common/entities';
 import { ORDER_DIRECTION } from '@/application/pagination';
 
 export class TypeOrmAdapter<T extends BaseEntityI> implements Repository<T> {
